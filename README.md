@@ -1,56 +1,166 @@
-<div align="center">
+HTB Writeups
 
-# HTB Writeups
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hackthebox/brand-assets/master/Logos/HTB%20Logo/PNG/HTB_logo.png" width="220">
+</p>
+<p align="center">
+  <strong>Documenting my Hack The Box journey through methodology, attack chains, and MITRE ATT&CK mapping.</strong>
+</p>
+<p align="center">
+  <a href="https://app.hackthebox.com/">
+    <img src="https://img.shields.io/badge/Hack%20The%20Box-Profile-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black">
+  </a>
+  <img src="https://img.shields.io/badge/Writeups-7-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/MITRE-ATT%26CK-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Active-blue?style=for-the-badge">
+</p>
 
-مجموعة تغطي كل الأجهزة (Machines) التي تم اختراقها بنجاح على Hack The Box، مع شرح مختصر لسلسلة الاختراق الكاملة وربطها بإطار MITRE ATT&CK.
+⸻
 
-[![HTB Profile](https://img.shields.io/badge/HTB-0xt1tan-9FEF00?style=flat-square&logo=hackthebox&logoColor=white)](https://app.hackthebox.com/profile/0xt1tan)
-![Machines](https://img.shields.io/badge/Machines-7-2ea44f?style=flat-square)
-![License](https://img.shields.io/badge/License-Educational-blue?style=flat-square)
+Overview
 
-</div>
+This repository contains concise writeups for every Hack The Box Machine I have successfully completed.
 
----
+Rather than reproducing the original machine content, each writeup focuses on the methodology, attack path, and decision-making process behind the compromise while respecting the Hack The Box content policy.
 
-## نظرة عامة
+Each machine includes:
 
-كل جهاز له مجلد خاص يحتوي على README يوثّق: الاستطلاع، نقطة الدخول (Foothold)، تصعيد الصلاحيات (Privilege Escalation)، وتعيين التقنيات المستخدمة على MITRE ATT&CK. الهدف من هذا المستودع هو توثيق منهجية العمل وليس نسخ محتوى الجهاز نفسه، احترامًا لقواعد HTB.
+* Network Enumeration
+* Service Analysis
+* Initial Foothold
+* Privilege Escalation
+* Indicators of Compromise (where applicable)
+* MITRE ATT&CK Mapping
+* Lessons Learned
 
-## قائمة الأجهزة
+The objective is to build a practical knowledge base that reflects real penetration testing methodology instead of exploit copy-pasting.
 
-| الجهاز | النظام | الصعوبة | التصنيف | التقنية الأساسية |
-|---|---|---|---|---|
-| [Sequel](machines/Sequel/README.md) | Linux | Very Easy | Starting Point | MySQL root بدون كلمة مرور |
-| [Crocodile](machines/Crocodile/README.md) | Linux | Very Easy | Starting Point | تسريب بيانات عبر FTP مجهول + تجاوز تسجيل دخول |
-| [Paper](machines/Paper/README.md) | Linux | Easy | Machine | WordPress info disclosure + Polkit privesc |
-| [MetaTwo](machines/MetaTwo/README.md) | Linux | Easy | Machine | SQLi + XXE + Passpie GPG privesc |
-| [Remote](machines/Remote/README.md) | Windows | Easy | Machine | Umbraco RCE + مسارين لتصعيد الصلاحيات |
-| [Knife](machines/Knife/README.md) | Linux | Easy | Machine | PHP dev backdoor RCE + sudo knife privesc |
-| [Timelapse](machines/Timelapse/README.md) | Windows (AD) | Easy | Machine | كسر شهادة PFX + LAPS abuse إلى Domain Admin |
+⸻
 
-## خريطة MITRE ATT&CK المجمّعة
+Repository Structure
 
-<details>
-<summary>عرض التكتيكات والتقنيات المستخدمة عبر جميع الأجهزة</summary>
+HTB-Writeups/
+│
+├── Sequel/
+│   └── README.md
+│
+├── Crocodile/
+│   └── README.md
+│
+├── Paper/
+│   └── README.md
+│
+├── MetaTwo/
+│   └── README.md
+│
+├── Remote/
+│   └── README.md
+│
+├── Knife/
+│   └── README.md
+│
+└── Timelapse/
+    └── README.md
 
-| Tactic | Technique | ID | مثال جهاز |
-|---|---|---|---|
-| Reconnaissance | Active Scanning | T1595 | جميع الأجهزة |
-| Initial Access | Exploit Public-Facing Application | T1190 | Paper, MetaTwo, Remote, Knife |
-| Credential Access | Unsecured Credentials | T1552 | Crocodile, Remote, Timelapse |
-| Credential Access | Brute Force (Hash Cracking) | T1110 | Remote, Timelapse |
-| Execution | Command and Scripting Interpreter | T1059 | Knife, Remote |
-| Privilege Escalation | Exploitation for Privilege Escalation | T1068 | Paper, MetaTwo |
-| Privilege Escalation | Abuse Elevation Control Mechanism (sudo) | T1548.003 | Knife |
-| Privilege Escalation | Valid Accounts (credential reuse) | T1078 | Remote |
-| Lateral Movement / Escalation | LAPS Abuse | T1552.006 | Timelapse |
+⸻
 
-</details>
+Completed Machines
 
-## أدوات مستخدمة بشكل متكرر
+Machine	OS	Difficulty	Category	Primary Technique
+Sequel	Linux	Very Easy	Starting Point	MySQL Root Login (No Password)
+Crocodile	Linux	Very Easy	Starting Point	Anonymous FTP → Credential Reuse
+Paper	Linux	Easy	Machine	WordPress Information Disclosure → Polkit
+MetaTwo	Linux	Easy	Machine	SQLi → XXE → Passpie GPG
+Remote	Windows	Easy	Machine	Umbraco CMS RCE
+Knife	Linux	Easy	Machine	PHP Backdoor → sudo Knife
+Timelapse	Windows AD	Easy	Machine	Cracked PFX → LAPS Abuse
 
-`nmap` `gobuster` `Evil-WinRM` `Metasploit` `hashcat` / `john` `BloodHound` `Chisel`
+⸻
 
-## عن الكاتب
+MITRE ATT&CK Coverage
 
-متخصص أمن سيبراني في بداية مساره المهني، يعمل على بناء مسار SOC Analyst ← SOC Manager، مع تدريب عملي مستمر على Hack The Box (تقريبًا جهازين أو Sherlock أسبوعيًا، بالتناوب بين الهجوم والتحليل الجنائي الرقمي).
+This repository maps every machine against the MITRE ATT&CK framework to better understand attacker behavior beyond individual exploits.
+
+Tactic	Examples
+Initial Access	Valid Accounts, Exploiting Public Applications
+Execution	Command Shell, PHP Execution
+Persistence	Valid Accounts
+Privilege Escalation	Sudo Abuse, Polkit, LAPS
+Credential Access	Password Cracking, Credential Dumping
+Discovery	Service Enumeration, Account Discovery
+Lateral Movement	SMB, WinRM
+Collection	File Discovery
+Command & Control	Reverse Shells
+Impact	Administrative Access
+
+⸻
+
+Frequently Used Tools
+
+<p align="center">
+<img src="https://skillicons.dev/icons?i=linux,bash,git,docker"/>
+</p>
+
+Enumeration	Exploitation	Post Exploitation
+Nmap	Metasploit	Evil-WinRM
+Gobuster	SQLmap	BloodHound
+NetExec	Burp Suite	Chisel
+Feroxbuster	curl	LinPEAS
+Enum4linux	Hydra	WinPEAS
+FTP	CrackMapExec	John / Hashcat
+
+⸻
+
+Writeup Philosophy
+
+Every writeup answers four questions:
+
+* How was the target enumerated?
+* Why did the attack work?
+* How was privilege escalation achieved?
+* Which MITRE ATT&CK techniques describe the attack?
+
+The focus is on understanding why something works—not simply following exploitation steps.
+
+⸻
+
+HTB License Notice
+
+These writeups are original summaries created for educational purposes.
+
+They intentionally avoid reproducing proprietary Hack The Box content, official walkthroughs, flags, or machine-specific solutions.
+
+All rights related to the original machine content remain the property of Hack The Box.
+
+⸻
+
+About Me
+
+Cybersecurity professional specializing in Blue Team operations with a growing focus on offensive security to better understand attacker tradecraft.
+
+Current roadmap:
+
+SOC Analyst
+      │
+      ▼
+Detection Engineer
+      │
+      ▼
+Threat Hunter
+      │
+      ▼
+SOC Manager
+
+Hands-on practice is primarily conducted through:
+
+* Hack The Box Machines
+* Hack The Box Sherlocks
+* Digital Forensics
+* Incident Response
+* Detection Engineering
+
+⸻
+
+<p align="center">
+  <strong>If you find this repository useful, consider giving it a ⭐.</strong>
+</p>
